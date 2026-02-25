@@ -20,8 +20,12 @@ jobs:
           pip install -r requirements.txt
       - name: Ensure browsers are installed
         run: python -m playwright install --with-deps
+      - name: Create fresh reports directory
+        run: |
+          mkdir -p reports
+        working-directory: .
       - name: Run your tests
-        run: pytest -s -v
+        run: pytest -s -v --alluredir=reports
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
@@ -41,10 +45,9 @@ jobs:
           allure_results: reports
           gh_pages: gh-pages
           allure_report: allure-report
-          allure_history: allure-history
       - uses: peaceiris/actions-gh-pages@v2
         if: always()
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: allure-history
+          PUBLISH_DIR: allure-report

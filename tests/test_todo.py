@@ -27,7 +27,7 @@ def test_locator_and(page):
 
     with allure.step('Найти кнопку с role и title и кликнуть'):
         selector = page.get_by_role("button", name="Sing up") \
-            .and_(page.get_by_title("Sing up today"))
+            .and_(page.get_by_title("Sing up today."))
         selector.click()
 
 
