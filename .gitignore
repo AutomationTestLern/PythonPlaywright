@@ -2,7 +2,6 @@ __pycache__/
 .idea/
 allure-results/
 allure-report/
-reports/
 *.pyc
 .DS_Store
 ._.DS_Store
